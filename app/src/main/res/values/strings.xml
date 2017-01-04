@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Book Listing Project</string>
+    <string name="search_info">Search Here</string>
+    <string name="search_mandate">Search by title or author</string>
+</resources>
