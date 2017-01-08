@@ -14,24 +14,24 @@
         android:textColor="#004D40"/>
 
     <TextView
-        android:id="@+id/caption"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/caption"
+        style="@style/subtitle"
         android:textColor="#004D40"/>
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/authors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/author"
+        style="@style/authors"
         android:textColor="#004D40"/>
 
     <TextView
-        android:id="@+id/publication_date"
+        android:id="@+id/published_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/publication_date"
+        style="@style/published_date"
         android:textColor="#004D40"/>
 
 </LinearLayout>

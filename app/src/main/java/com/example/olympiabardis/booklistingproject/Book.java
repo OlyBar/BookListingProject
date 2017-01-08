@@ -16,16 +16,16 @@ import java.util.ArrayList;
 
 public class Book implements Parcelable {
     private String mTitle;
-    private String mCaption;
-    private ArrayList<String> mAuthor;
-    private String mPublicationDate;
+    private String mSubtitle;
+    private ArrayList<String> mAuthors;
+    private String mPublishedDate;
 
     @Override
     public void writeToParcel(Parcel out, int flags){
         out.writeString(mTitle);
-        out.writeString(mCaption);
-        out.writeStringList(mAuthor);
-        out.writeString(mPublicationDate);
+        out.writeString(mSubtitle);
+        out.writeStringList(mAuthors);
+        out.writeString(mPublishedDate);
     }
 
     @Override
@@ -35,37 +35,36 @@ public class Book implements Parcelable {
 
     private Book (Parcel in){
         mTitle = in.readString();
-        mCaption = in.readString();
-        in.readStringList(mAuthor);
-        mPublicationDate = in.readString();
+        mSubtitle = in.readString();
+        in.readStringList(mAuthors);
+        mPublishedDate = in.readString();
     }
 
     public Book (JSONObject object){
         try {
             JSONObject volumeInfo = object.getJSONObject("volumeInfo");
             this.mTitle = volumeInfo.getString("title");
-            this.mCaption = volumeInfo.getString("caption");
-            this.mAuthor = new ArrayList<String>();
+            this.mSubtitle = volumeInfo.getString("subtitle");
+            this.mAuthors = new ArrayList<>();
 
-            JSONArray jsonArrayAuthor = volumeInfo.getJSONArray("author");
-            if (jsonArrayAuthor != null){
-                for(int i=0; i<jsonArrayAuthor.length();i++){
-                    mAuthor.add(jsonArrayAuthor.get(i).toString());
+            JSONArray jsonArrayAuthors = volumeInfo.getJSONArray("authors");
+            if (jsonArrayAuthors != null){
+                for(int i=0; i<jsonArrayAuthors.length(); i++){
+                    mAuthors.add(jsonArrayAuthors.get(i).toString());
                 }
             }
-
-            this.mPublicationDate = volumeInfo.getString("publicationDate");
+            this.mPublishedDate = volumeInfo.getString("publishedDate");
         } catch(JSONException e){
             e.printStackTrace();
         }
     }
 
     public String getTitle() { return mTitle;}
-    public String getCaption() { return mCaption;}
-    public String getPublicationDate() { return mPublicationDate;}
-    public String getAuthor(){
-        if(mAuthor == null || mAuthor.size() == 0) return "";
-        return TextUtils.join(", ", mAuthor);
+    public String getSubtitle() { return mSubtitle;}
+    public String getPublishedDate() { return mPublishedDate;}
+    public String getAuthors() {
+        if (mAuthors == null || mAuthors.size() == 0) return "";
+        return TextUtils.join(", ", mAuthors);
     }
 
     public static ArrayList<Book> fromJson(JSONArray jsonObjects){

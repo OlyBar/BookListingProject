@@ -4,8 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateUi(){
         BookAdapter adapter = new BookAdapter(this, mBooksList);
 
-        TextView tvInstructions = (TextView) findViewById(R.id.search_mandate);
-        tvInstructions.setVisibility(View.GONE);
+        TextView tvMandate = (TextView) findViewById(R.id.search_mandate);
+        tvMandate.setVisibility(View.GONE);
 
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
         private String mSearchQuery;
         private int mCount;
 
-        public BookAsyncTask(String SearchQuery, int count){
-            mSearchQuery = SearchQuery.replaceAll(" ", "%20");
+        public BookAsyncTask(String searchQuery, int count){
+            mSearchQuery = searchQuery.replaceAll(" ", "%20");
             mCount = count;
         }
 
@@ -121,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Book> books){
-            if(books == null){
+            if (books == null){
+                return;
             }
             mBooksList = books;
             updateUi();

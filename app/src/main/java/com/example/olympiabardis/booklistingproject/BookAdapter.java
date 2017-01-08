@@ -31,14 +31,15 @@ public class BookAdapter extends ArrayAdapter<Book> {
         TextView tvTitle = (TextView) convertView.findViewById(R.id.title);
         tvTitle.setText(book.getTitle());
 
-        TextView tvCaption = (TextView) convertView.findViewById(R.id.caption);
-        tvCaption.setText(book.getCaption());
+        TextView tvSubtitle = (TextView) convertView.findViewById(R.id.subtitle);
+        tvSubtitle.setText(book.getSubtitle());
 
-        TextView tvPublicationDate = (TextView) convertView.findViewById(R.id.publication_date);
-        tvPublicationDate.setText(book.getPublicationDate());
+        TextView tvAuthors = (TextView) convertView.findViewById(R.id.authors);
+        tvAuthors.setText(book.getAuthors());
 
-        TextView tvAuthor = (TextView) convertView.findViewById(R.id.author);
-        tvAuthor.setText(book.getAuthor());
+        TextView tvPublishedDate = (TextView) convertView.findViewById(R.id.published_date);
+        tvPublishedDate.setText(book.getPublishedDate());
+
 
         return convertView;
     }
